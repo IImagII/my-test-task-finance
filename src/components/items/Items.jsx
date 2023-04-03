@@ -25,16 +25,16 @@ const Items = () => {
               Change <span className={styles.handle}></span>
             </th>
             <th>
-              change_percent <span className={styles.handle}></span>
+              Percent <span className={styles.handle}></span>
             </th>
             <th>
-              dividend <span className={styles.handle}></span>
+              Dividend <span className={styles.handle}></span>
             </th>
             <th>
-              yield <span className={styles.handle}></span>
+              Yield <span className={styles.handle}></span>
             </th>
             <th>
-              last_trade_time <span className={styles.handle}></span>
+              Last trade<span className={styles.handle}></span>
             </th>
           </tr>
         </thead>

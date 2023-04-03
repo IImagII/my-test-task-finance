@@ -1,0 +1,44 @@
+.red {
+  position: relative;
+
+  span {
+    background-color: rgb(233, 105, 105);
+    color: white;
+    padding: 2px;
+    position: relative;
+    z-index: 1;
+    &::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background-color: red;
+      z-index: -1;
+      pointer-events: none;
+    }
+  }
+}
+
+.green {
+  position: relative;
+  span {
+    background-color: rgb(173, 247, 173);
+    color: rgb(14, 13, 13);
+    padding: 2px;
+    position: relative;
+    z-index: 1;
+    &::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background-color: rgb(118, 241, 118);
+      z-index: -1;
+      pointer-events: none;
+    }
+  }
+}

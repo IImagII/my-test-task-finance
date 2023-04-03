@@ -9,7 +9,6 @@ function App() {
 
   useEffect(() => {
     const socket = io('http://localhost:4000')
-
     socket.emit('start')
     socket.on('ticker', (response) => {
       setTicker(response)
