@@ -1,12 +1,12 @@
-import React from 'react'
 import ReactDOM from 'react-dom'
 
 import App from './App'
+import { TickerProvider } from './hooks/useContextProvider.jsx'
 import './styles/index.scss'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <TickerProvider>
     <App />
-  </React.StrictMode>,
+  </TickerProvider>,
   document.getElementById('root')
 )
