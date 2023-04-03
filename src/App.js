@@ -3,7 +3,6 @@ import { io } from 'socket.io-client'
 
 import { TickerContext } from './hooks/useContextProvider.jsx'
 import Home from './pages/home/Home.jsx'
-import './styles/app.scss'
 
 function App() {
   const { setTicker } = useContext(TickerContext)

@@ -2,6 +2,7 @@ import { useContext } from 'react'
 
 import { TickerContext } from '../../hooks/useContextProvider.jsx'
 
+import Item from './Item.jsx'
 import styles from './Items.module.scss'
 
 const Items = () => {
@@ -11,28 +12,28 @@ const Items = () => {
       <table>
         <thead>
           <tr>
-            <th data-type={styles.numeric}>
+            <th>
               Ticker <span className={styles.handle}></span>
             </th>
-            <th data-type={styles.short}>
+            <th>
               Exchange <span className={styles.handle}></span>
             </th>
-            <th data-type={styles.short}>
+            <th>
               Price <span className={styles.handle}></span>
             </th>
-            <th data-type={styles.short}>
+            <th>
               Change <span className={styles.handle}></span>
             </th>
-            <th data-type={styles.short}>
+            <th>
               change_percent <span className={styles.handle}></span>
             </th>
-            <th data-type={styles.short}>
+            <th>
               dividend <span className={styles.handle}></span>
             </th>
-            <th data-type={styles.short}>
+            <th>
               yield <span className={styles.handle}></span>
             </th>
-            <th data-type={styles.short}>
+            <th>
               last_trade_time <span className={styles.handle}></span>
             </th>
           </tr>
@@ -40,14 +41,7 @@ const Items = () => {
         <tbody>
           {ticker.map((item, index) => (
             <tr key={index}>
-              <td>{item.ticker}</td>
-              <td>{item.exchange}</td>
-              <td>{item.price}</td>
-              <td>{item.change}</td>
-              <td>{item.change_percent}</td>
-              <td>{item.dividend}</td>
-              <td>{item.yield}</td>
-              <td>{item.last_trade_time}</td>
+              <Item {...item} />
             </tr>
           ))}
         </tbody>
