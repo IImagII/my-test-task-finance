@@ -25,9 +25,18 @@ const Item = ({ ...item }) => {
     <>
       <td>{ticker}</td>
       <td>{exchange}</td>
-      <td className={styles.view}>{priceDisplay} $</td>
-      <td className={styles.view}>{changeDisplay} $</td>
-      <td className={styles.view}>{percentDisplay} %</td>
+      <td className={styles.view}>
+        {priceDisplay}
+        <span>$</span>
+      </td>
+      <td className={styles.view}>
+        {changeDisplay}
+        <span>$</span>
+      </td>
+      <td className={styles.view}>
+        {percentDisplay}
+        <span>%</span>
+      </td>
       <td>{dividendDisplay}</td>
       <td>{yieldDisplay}</td>
       <td>{changeData(new Date(last_trade_time))}</td>
