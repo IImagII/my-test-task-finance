@@ -35,7 +35,6 @@ const Items = () => {
     const filterButton = ticker.filter((item) => {
       return item.ticker.toLowerCase().includes(tickerButton.toLowerCase())
     })
-
     return filterButton
   }, [debouncedSearchTerm, ticker, tickerButton])
 
@@ -77,6 +76,9 @@ const Items = () => {
             </th>
             <th>
               Last trade<span className={styles.handle}></span>
+            </th>
+            <th>
+              <span className={styles.handle}></span>
             </th>
             <th>
               <span className={styles.handle}></span>

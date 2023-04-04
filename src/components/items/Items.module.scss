@@ -4,7 +4,7 @@ table {
   flex: 1;
   display: grid;
   border-collapse: collapse;
-  grid-template-columns: repeat(8, 1fr) 50px;
+  grid-template-columns: repeat(8, 1fr) 50px 50px;
 }
 
 thead,

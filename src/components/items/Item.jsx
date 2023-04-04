@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 import { AiOutlineMinusCircle } from 'react-icons/ai'
 import { BsPlusCircle } from 'react-icons/bs'
+import { RxCross2 } from 'react-icons/rx'
 
 import { useNumberDisplay } from '../../hooks/number-display/useNumberDisplay.jsx'
 import { changeData } from '../../utils/changeData'
@@ -8,7 +9,12 @@ import { HightLight } from '../../utils/hight-light/HightLight'
 
 import styles from './Items.module.scss'
 
-const Item = ({ debouncedSearchTerm, onTickerClick, ...item }) => {
+const Item = ({
+  debouncedSearchTerm,
+  onTickerClick,
+  onTickerRemove,
+  ...item
+}) => {
   const {
     ticker,
     exchange,
@@ -19,7 +25,7 @@ const Item = ({ debouncedSearchTerm, onTickerClick, ...item }) => {
     yield: decideYield,
     last_trade_time
   } = item
-  const [isIconChange, setIsIconCnahge] = useState(true)
+  const [isIconChange, setIsIconChange] = useState(true)
 
   const priceDisplay = useNumberDisplay({ number: price })
   const changeDisplay = useNumberDisplay({ number: change })
@@ -36,7 +42,7 @@ const Item = ({ debouncedSearchTerm, onTickerClick, ...item }) => {
 
   const handleTickerClick = useCallback(() => {
     onTickerClick(ticker)
-    setIsIconCnahge((isIconChange) => !isIconChange)
+    setIsIconChange((isIconChange) => !isIconChange)
   }, [onTickerClick, ticker])
 
   return (
@@ -49,9 +55,10 @@ const Item = ({ debouncedSearchTerm, onTickerClick, ...item }) => {
       </td>
       <td className={styles.view}>
         {changeDisplay}
+
         <span>$</span>
       </td>
-      <td className={styles.view}>
+      <td className={styles.view} data-number={percentDisplay}>
         {percentDisplay}
         <span>%</span>
       </td>
@@ -66,6 +73,13 @@ const Item = ({ debouncedSearchTerm, onTickerClick, ...item }) => {
             <AiOutlineMinusCircle size={20} />
           )}
         </a>
+      </td>
+      <td>
+        <RxCross2
+          color="red"
+          size={20}
+          onClick={() => onTickerRemove(ticker)}
+        />
       </td>
     </>
   )

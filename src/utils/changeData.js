@@ -12,6 +12,10 @@ export const changeData = (date, lang = navigator.language) => {
   ]
   const units = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year']
 
+  if (!Number.isFinite(deltaSeconds)) {
+    return 'unknown'
+  }
+
   const unitIndex = cutoffs.findIndex(
     (cutoff) => cutoff > Math.abs(deltaSeconds)
   )
