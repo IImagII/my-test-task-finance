@@ -1,12 +1,15 @@
 import ReactDOM from 'react-dom'
 
 import App from './App'
-import { TickerProvider } from './hooks/useContextProvider.jsx'
+import { TickerProvider } from './hooks/context/useContextProvider.jsx'
+import { SearchProvider } from './hooks/context/useSearchProvider.jsx'
 import './styles/index.scss'
 
 ReactDOM.render(
-  <TickerProvider>
-    <App />
-  </TickerProvider>,
+  <SearchProvider>
+    <TickerProvider>
+      <App />
+    </TickerProvider>
+  </SearchProvider>,
   document.getElementById('root')
 )

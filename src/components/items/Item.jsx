@@ -1,9 +1,12 @@
+import { useCallback } from 'react'
+
 import { useNumberDisplay } from '../../hooks/number-display/useNumberDisplay.jsx'
 import { changeData } from '../../utils/changeData'
+import { HightLight } from '../../utils/hight-light/HightLight'
 
 import styles from './Items.module.scss'
 
-const Item = ({ ...item }) => {
+const Item = ({ debouncedSearchTerm, ...item }) => {
   const {
     ticker,
     exchange,
@@ -21,9 +24,16 @@ const Item = ({ ...item }) => {
   const dividendDisplay = useNumberDisplay({ number: dividend })
   const yieldDisplay = useNumberDisplay({ number: decideYield })
 
+  const lightText = useCallback(
+    (str) => {
+      return <HightLight filter={debouncedSearchTerm} str={str} />
+    },
+    [debouncedSearchTerm]
+  )
+
   return (
     <>
-      <td>{ticker}</td>
+      <td>{lightText(ticker)}</td>
       <td>{exchange}</td>
       <td className={styles.view}>
         {priceDisplay}

@@ -1,22 +1,23 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 
+import { SearchContext } from '../../hooks/context/useSearchProvider.jsx'
 import Input from '../ui/input/Input.jsx'
 
 import styles from './SearchTicker.module.scss'
 
 const SearchTicker = () => {
-  const [search, setSearch] = useState('')
-  console.log('🚀 ~ search:', search)
+  const { setSearchValue } = useContext(SearchContext)
 
   return (
     <div className={styles.container}>
       <div className={styles.search}>
         <Input
-          name="text"
-          placeholder="enter ticker"
-          onChange={(e) => setSearch(e.target.value)}
+          type="search"
+          placeholder="Enter required tricker"
+          onChange={(e) => setSearchValue(e.target.value)}
         />
       </div>
+      <div className={styles.text}>пошук працює по ticker</div>
     </div>
   )
 }

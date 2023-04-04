@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { TickerContext } from '../../hooks/useContextProvider.jsx'
+import { TickerContext } from '../../hooks/context/useContextProvider.jsx'
 import List from '../List.jsx'
 
 import styles from './Header.module.scss'

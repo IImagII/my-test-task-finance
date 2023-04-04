@@ -1,7 +1,7 @@
 .container {
   position: relative;
 }
-input[type='text'] {
+input[type='search'] {
   border: 1px solid #ccc;
   border-radius: 20px;
   padding: 10px 40px 10px 10px;
@@ -10,7 +10,7 @@ input[type='text'] {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-input[type='text']:focus {
+input[type='search']:focus {
   outline: none;
   border-color: #4d90fe;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), 0px 0px 8px #4d90fe;
@@ -28,7 +28,7 @@ input[type='text']:focus {
 //   width: 20px;
 //   height: 20px;
 // }
-input[type='text']::placeholder {
+input[type='search']::placeholder {
   color: #97a0e2;
   text-align: center;
 }

@@ -1,12 +1,37 @@
-import { useContext } from 'react'
+import { useContext, useMemo } from 'react'
 
-import { TickerContext } from '../../hooks/useContextProvider.jsx'
+import { TickerContext } from '../../hooks/context/useContextProvider.jsx'
+import { SearchContext } from '../../hooks/context/useSearchProvider.jsx'
+import useDebounce from '../../hooks/useDebouce'
 
 import Item from './Item.jsx'
 import styles from './Items.module.scss'
 
 const Items = () => {
   const { ticker } = useContext(TickerContext)
+
+  const { searchValue } = useContext(SearchContext)
+
+  const debouncedSearchTerm = useDebounce(searchValue, 700)
+
+  const filterPosts = useMemo(() => {
+    if (!debouncedSearchTerm) {
+      return ticker
+    }
+
+    return ticker.filter((item) => {
+      return item.ticker
+        .toLowerCase()
+        .includes(debouncedSearchTerm.toLowerCase())
+    })
+  }, [debouncedSearchTerm, ticker])
+
+  const tickerValue = filterPosts.map((elem, index) => (
+    <tr key={index}>
+      <Item debouncedSearchTerm={debouncedSearchTerm} {...elem} />
+    </tr>
+  ))
+
   return (
     <div>
       <table>
@@ -38,13 +63,7 @@ const Items = () => {
             </th>
           </tr>
         </thead>
-        <tbody>
-          {ticker.map((item, index) => (
-            <tr key={index}>
-              <Item {...item} />
-            </tr>
-          ))}
-        </tbody>
+        <tbody>{tickerValue}</tbody>
       </table>
     </div>
   )

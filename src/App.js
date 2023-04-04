@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
 import { io } from 'socket.io-client'
 
-import { TickerContext } from './hooks/useContextProvider.jsx'
+import { TickerContext } from './hooks/context/useContextProvider.jsx'
 import Home from './pages/home/Home.jsx'
 
 function App() {
