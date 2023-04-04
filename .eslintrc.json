@@ -25,10 +25,9 @@
       "ignorePackages",
       {
         "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
+        "jsx": "never"
       }
-    ]
+    ],
+    "react/prop-types": 0
   }
 }

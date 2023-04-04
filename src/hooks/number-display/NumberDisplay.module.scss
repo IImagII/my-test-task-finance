@@ -1,6 +1,5 @@
 .red {
   position: relative;
-
   span {
     background-color: rgb(243, 218, 218);
     color: rgb(173, 13, 13);
@@ -41,4 +40,10 @@
       pointer-events: none;
     }
   }
+}
+.red_number {
+  color: red;
+}
+.green_number {
+  color: green;
 }
