@@ -1,4 +1,6 @@
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
+import { AiOutlineMinusCircle } from 'react-icons/ai'
+import { BsPlusCircle } from 'react-icons/bs'
 
 import { useNumberDisplay } from '../../hooks/number-display/useNumberDisplay.jsx'
 import { changeData } from '../../utils/changeData'
@@ -6,7 +8,7 @@ import { HightLight } from '../../utils/hight-light/HightLight'
 
 import styles from './Items.module.scss'
 
-const Item = ({ debouncedSearchTerm, ...item }) => {
+const Item = ({ debouncedSearchTerm, onTickerClick, ...item }) => {
   const {
     ticker,
     exchange,
@@ -17,6 +19,7 @@ const Item = ({ debouncedSearchTerm, ...item }) => {
     yield: decideYield,
     last_trade_time
   } = item
+  const [isIconChange, setIsIconCnahge] = useState(true)
 
   const priceDisplay = useNumberDisplay({ number: price })
   const changeDisplay = useNumberDisplay({ number: change })
@@ -30,6 +33,11 @@ const Item = ({ debouncedSearchTerm, ...item }) => {
     },
     [debouncedSearchTerm]
   )
+
+  const handleTickerClick = useCallback(() => {
+    onTickerClick(ticker)
+    setIsIconCnahge((isIconChange) => !isIconChange)
+  }, [onTickerClick, ticker])
 
   return (
     <>
@@ -50,6 +58,15 @@ const Item = ({ debouncedSearchTerm, ...item }) => {
       <td>{dividendDisplay}</td>
       <td>{yieldDisplay}</td>
       <td>{changeData(new Date(last_trade_time))}</td>
+      <td>
+        <a onClick={handleTickerClick}>
+          {isIconChange ? (
+            <BsPlusCircle size={20} />
+          ) : (
+            <AiOutlineMinusCircle size={20} />
+          )}
+        </a>
+      </td>
     </>
   )
 }

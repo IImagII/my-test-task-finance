@@ -1,4 +1,5 @@
 import { useContext, useMemo } from 'react'
+import { useState } from 'react'
 
 import { TickerContext } from '../../hooks/context/useContextProvider.jsx'
 import { SearchContext } from '../../hooks/context/useSearchProvider.jsx'
@@ -14,21 +15,37 @@ const Items = () => {
 
   const debouncedSearchTerm = useDebounce(searchValue, 700)
 
-  const filterPosts = useMemo(() => {
-    if (!debouncedSearchTerm) {
-      return ticker
+  const [tickerButton, setTickerButton] = useState('')
+
+  const handleTickerClick = (value) => {
+    setTickerButton(value === tickerButton ? '' : value)
+  }
+
+  const filterTicker = useMemo(() => {
+    if (!debouncedSearchTerm && !tickerButton) return ticker
+
+    if (debouncedSearchTerm) {
+      return ticker.filter((item) => {
+        return item.ticker
+          .toLowerCase()
+          .includes(debouncedSearchTerm.toLowerCase())
+      })
     }
 
-    return ticker.filter((item) => {
-      return item.ticker
-        .toLowerCase()
-        .includes(debouncedSearchTerm.toLowerCase())
+    const filterButton = ticker.filter((item) => {
+      return item.ticker.toLowerCase().includes(tickerButton.toLowerCase())
     })
-  }, [debouncedSearchTerm, ticker])
 
-  const tickerValue = filterPosts.map((elem, index) => (
-    <tr key={index}>
-      <Item debouncedSearchTerm={debouncedSearchTerm} {...elem} />
+    return filterButton
+  }, [debouncedSearchTerm, ticker, tickerButton])
+
+  const tickerValue = filterTicker.map((elem) => (
+    <tr key={elem.ticker}>
+      <Item
+        debouncedSearchTerm={debouncedSearchTerm}
+        onTickerClick={handleTickerClick}
+        {...elem}
+      />
     </tr>
   ))
 
@@ -60,6 +77,9 @@ const Items = () => {
             </th>
             <th>
               Last trade<span className={styles.handle}></span>
+            </th>
+            <th>
+              <span className={styles.handle}></span>
             </th>
           </tr>
         </thead>

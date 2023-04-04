@@ -4,7 +4,7 @@ table {
   flex: 1;
   display: grid;
   border-collapse: collapse;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(8, 1fr) 50px;
 }
 
 thead,
@@ -34,17 +34,6 @@ th {
 
 th:last-child {
   border: 0;
-}
-
-.handle {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background: black;
-  opacity: 0;
-  width: 3px;
-  cursor: col-resize;
 }
 
 td {

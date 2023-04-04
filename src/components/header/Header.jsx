@@ -10,8 +10,8 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      {ticker.map((item, index) => (
-        <List {...item} key={index} />
+      {ticker.map((item) => (
+        <List {...item} key={item.ticker} />
       ))}
     </header>
   )
