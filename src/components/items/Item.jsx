@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react'
 import { AiOutlineMinusCircle } from 'react-icons/ai'
 import { BsPlusCircle } from 'react-icons/bs'
-import { RxCross2 } from 'react-icons/rx'
 
 import { useNumberDisplay } from '../../hooks/number-display/useNumberDisplay.jsx'
 import { changeData } from '../../utils/changeData'
@@ -12,7 +11,7 @@ import styles from './Items.module.scss'
 const Item = ({
   debouncedSearchTerm,
   onTickerClick,
-  onTickerRemove,
+
   ...item
 }) => {
   const {
@@ -74,13 +73,6 @@ const Item = ({
             <AiOutlineMinusCircle size={20} />
           )}
         </a>
-      </td>
-      <td>
-        <RxCross2
-          color="red"
-          size={20}
-          onClick={() => onTickerRemove(ticker)}
-        />
       </td>
     </>
   )

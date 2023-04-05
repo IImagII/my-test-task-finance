@@ -3,12 +3,13 @@ import { io } from 'socket.io-client'
 
 import { TickerContext } from './hooks/context/useContextProvider.jsx'
 import Home from './pages/home/Home.jsx'
+import { paths } from './utils/paths'
 
 function App() {
   const { setTicker } = useContext(TickerContext)
 
   useEffect(() => {
-    const socket = io('http://localhost:4000')
+    const socket = io(paths.url)
     socket.emit('start')
     socket.on('ticker', (response) => {
       setTicker(response)

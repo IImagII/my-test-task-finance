@@ -80,9 +80,6 @@ const Items = () => {
             <th>
               <span className={styles.handle}></span>
             </th>
-            <th>
-              <span className={styles.handle}></span>
-            </th>
           </tr>
         </thead>
         <tbody>{tickerValue}</tbody>
