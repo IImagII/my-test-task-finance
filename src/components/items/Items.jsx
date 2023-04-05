@@ -1,15 +1,27 @@
-import { useContext, useMemo } from 'react'
-import { useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
+import { io } from 'socket.io-client'
 
 import { TickerContext } from '../../hooks/context/useContextProvider.jsx'
 import { SearchContext } from '../../hooks/context/useSearchProvider.jsx'
 import useDebounce from '../../hooks/useDebounce/useDebouce'
+import { paths } from '../../utils/paths'
 
 import Item from './Item.jsx'
 import styles from './Items.module.scss'
 
 const Items = () => {
-  const { ticker } = useContext(TickerContext)
+  const { ticker, setTicker } = useContext(TickerContext)
+
+  useEffect(() => {
+    const socket = io(paths.url)
+    socket.emit('start')
+    socket.on('ticker', (response) => {
+      setTicker(response)
+    })
+    return () => {
+      socket.disconnect()
+    }
+  }, [setTicker])
 
   const { searchValue } = useContext(SearchContext)
 

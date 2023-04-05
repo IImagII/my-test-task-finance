@@ -1,21 +1,18 @@
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 
 import App from './App'
-import { TickerProvider } from './hooks/context/useContextProvider.jsx'
-import { SearchProvider } from './hooks/context/useSearchProvider.jsx'
 import reportWebVitals from './reportWebVitals'
 import { store } from './store/store'
 import './styles/index.scss'
 
 ReactDOM.render(
-  <Provider store={store}>
-    <SearchProvider>
-      <TickerProvider>
-        <App />
-      </TickerProvider>
-    </SearchProvider>
-  </Provider>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
   document.getElementById('root')
 )
 

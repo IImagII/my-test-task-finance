@@ -1,31 +1,19 @@
-import { useContext, useEffect } from 'react'
-import { io } from 'socket.io-client'
+import { Route, Routes } from 'react-router'
 
 import Layout from './components/layout/Layout.jsx'
-import { TickerContext } from './hooks/context/useContextProvider.jsx'
+import NotFoundInfo from './components/not-found/NotFound.jsx'
 import Home from './pages/home/Home.jsx'
-import { paths } from './utils/paths'
+import ListOne from './pages/list-one/ListOne.jsx'
 
 function App() {
-  const { setTicker } = useContext(TickerContext)
-
-  useEffect(() => {
-    const socket = io(paths.url)
-    socket.emit('start')
-    socket.on('ticker', (response) => {
-      setTicker(response)
-    })
-    return () => {
-      socket.disconnect()
-    }
-  }, [setTicker])
-
   return (
-    <>
-      <Layout>
-        <Home />
-      </Layout>
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/news/:id" element={<ListOne />} />
+        <Route path="*" element={<NotFoundInfo />} />
+      </Route>
+    </Routes>
   )
 }
 

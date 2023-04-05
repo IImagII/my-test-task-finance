@@ -1,10 +1,10 @@
 import Moment from 'react-moment'
+import { Link } from 'react-router-dom'
 
 import styles from './ListNews.module.scss'
 
 const List = ({ ...item }) => {
-  const { imageUrl, title, updatedAt, url, newsSite, summary } = item
-
+  const { id, imageUrl, title, updatedAt, url, newsSite, summary } = item
 
   return (
     <div>
@@ -23,11 +23,11 @@ const List = ({ ...item }) => {
           </ul>
         </div>
         <div className={styles.description}>
-          <h1>{title}</h1>
-          <h2>{newsSite}</h2>
-          <p>{summary.substring(0, 200) + '...'}</p>
+          <h2>{title.substring(0, 70) + '...'}</h2>
+          <h4>{newsSite}</h4>
+          <p>{summary.substring(0, 100) + '...'}</p>
           <p className={styles.read_more}>
-            <a href={url}>Read More</a>
+            <Link to={`/news/${id}`}>Read More</Link>
           </p>
         </div>
       </div>

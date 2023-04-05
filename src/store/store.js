@@ -1,7 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import space from './slice/spaceSlice'
+import spaceReducer from './slice/spaceSlice'
 
 export const store = configureStore({
-  reducer: { space }
+  reducer: {
+    space: spaceReducer
+  }
 })
