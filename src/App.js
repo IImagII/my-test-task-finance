@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react'
 import { io } from 'socket.io-client'
 
+import Layout from './components/layout/Layout.jsx'
 import { TickerContext } from './hooks/context/useContextProvider.jsx'
 import Home from './pages/home/Home.jsx'
 import { paths } from './utils/paths'
@@ -21,7 +22,9 @@ function App() {
 
   return (
     <>
-      <Home />
+      <Layout>
+        <Home />
+      </Layout>
     </>
   )
 }
