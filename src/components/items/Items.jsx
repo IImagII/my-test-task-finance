@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import { TickerContext } from '../../hooks/context/useContextProvider.jsx'
 import { SearchContext } from '../../hooks/context/useSearchProvider.jsx'
-import useDebounce from '../../hooks/useDebouce'
+import useDebounce from '../../hooks/useDebounce/useDebouce'
 
 import Item from './Item.jsx'
 import styles from './Items.module.scss'

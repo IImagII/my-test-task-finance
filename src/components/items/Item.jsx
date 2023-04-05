@@ -25,6 +25,7 @@ const Item = ({
     yield: decideYield,
     last_trade_time
   } = item
+
   const [isIconChange, setIsIconChange] = useState(true)
 
   const priceDisplay = useNumberDisplay({ number: price })

@@ -1,6 +1,6 @@
-import { useNumberColor } from '../hooks/number-display/useNumberColor.jsx'
+import { useNumberColor } from '../../hooks/number-display/useNumberColor.jsx'
 
-import styles from './header/Header.module.scss'
+import styles from './List.module.scss'
 
 const List = ({ ...item }) => {
   const { ticker, price, change_percent: percent } = item
