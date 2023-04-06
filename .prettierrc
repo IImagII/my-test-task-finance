@@ -10,9 +10,11 @@
     "^@/store/(.*)$",
     "^@/styles/(.*)$",
     "^@/hooks/(.*)$",
+    "^@/page/(.*)$",
     "^@/utils/(.*)$",
     "^../(.*)",
     "^./(.*)",
+    "^@/assets/(.*)$",
     "(.scss)$"
   ],
   "importOrderSeparation": true,

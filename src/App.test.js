@@ -1,52 +1,58 @@
-import { act, render } from '@testing-library/react'
-import { io } from 'socket.io-client'
+import { render, screen } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 
 import App from './App'
-import { TickerContext } from './hooks/context/useContextProvider.jsx'
-
-jest.mock('socket.io-client')
 
 describe('App', () => {
-  const ticker = { symbol: 'AAPL', price: 132.04 }
-  let setTicker = jest.fn()
-
-  beforeEach(() => {
-    setTicker = jest.fn()
-    io.mockImplementation(() => {
-      return {
-        on: (event, callback) => {
-          if (event === 'ticker') {
-            callback(ticker)
-          }
-        },
-        emit: () => {},
-        disconnect: () => {}
-      }
-    })
-  })
-
-  afterEach(() => {
-    jest.clearAllMocks()
-  })
-
-  it('renders the Home component', () => {
-    const { getByText } = render(
-      <TickerContext.Provider value={{ setTicker }}>
+  test('renders home page when navigating to "/" path', () => {
+    render(
+      <MemoryRouter initialEntries={['/']}>
         <App />
-      </TickerContext.Provider>
+      </MemoryRouter>
     )
-    expect(getByText('Welcome to the Ticker App')).toBeInTheDocument()
+
+    expect(screen.getByText('Home Page')).toBeInTheDocument()
   })
 
-  it('updates the ticker context with the latest ticker data', async () => {
-    await act(async () => {
-      render(
-        <TickerContext.Provider value={{ setTicker }}>
-          <App />
-        </TickerContext.Provider>
-      )
-    })
+  test('renders ListOne page when navigating to "/news/:id" path', () => {
+    render(
+      <MemoryRouter initialEntries={['/news/1']}>
+        <App />
+      </MemoryRouter>
+    )
 
-    expect(setTicker).toHaveBeenCalledWith(ticker)
+    expect(screen.getByText('ListOne Page')).toBeInTheDocument()
+  })
+
+  test('renders NotFoundInfo page when navigating to non-existing path', () => {
+    render(
+      <MemoryRouter initialEntries={['/non-existing-path']}>
+        <App />
+      </MemoryRouter>
+    )
+
+    expect(screen.getByText('Page Not Found')).toBeInTheDocument()
+  })
+
+  test('renders Layout component on root path and Home component on nested "/" path', () => {
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>
+    )
+
+    expect(screen.getByTestId('layout-component')).toBeInTheDocument()
+    expect(screen.getByText('Home Page')).toBeInTheDocument()
+  })
+
+  test('renders Layout component on root path and ListOne component on nested "/news/:id" path', () => {
+    render(
+      <MemoryRouter initialEntries={['/news/1']}>
+        <App />
+      </MemoryRouter>
+    )
+
+    expect(screen.getByTestId('layout-component')).toBeInTheDocument()
+    expect(screen.getByText('ListOne Page')).toBeInTheDocument()
   })
 })

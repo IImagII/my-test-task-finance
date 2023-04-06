@@ -1,20 +1,11 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import Home from './Home.jsx'
 
 describe('Home', () => {
-  it('renders the Header component', () => {
-    const { getByTestId } = render(<Home />)
-    expect(getByTestId('header')).toBeInTheDocument()
-  })
+  test('renders ListNews component', () => {
+    render(<Home />)
 
-  it('renders the SearchTicker component', () => {
-    const { getByTestId } = render(<Home />)
-    expect(getByTestId('search-ticker')).toBeInTheDocument()
-  })
-
-  it('renders the Items component', () => {
-    const { getByTestId } = render(<Home />)
-    expect(getByTestId('items')).toBeInTheDocument()
+    expect(screen.getByTestId('list-news-component')).toBeInTheDocument()
   })
 })
